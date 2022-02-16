@@ -16,6 +16,8 @@ public class ExpAnalyzer {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Ventana V = new Ventana();
+        V.setVisible(true);
     }
     
 }
