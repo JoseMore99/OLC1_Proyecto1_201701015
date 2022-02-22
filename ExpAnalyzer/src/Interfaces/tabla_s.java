@@ -5,16 +5,43 @@
  */
 package Interfaces;
 
+import java.util.LinkedList;
+
 /**
  *
  * @author Moreira Paz
  */
 public class tabla_s {
     
-    public void nuevo(){
-        
+    LinkedList<Simbolo> tabla;
+    public tabla_s() {
+        this.tabla = new LinkedList<>();
     }
-    public void existe (){
-        
+
+    public boolean nuevoSimbolo(Simbolo nuevo){
+      if(!existeSimbolo(nuevo.nombre)){
+          tabla.add(nuevo);
+          return true;
+      }
+      return false;
+    }
+
+    public boolean existeSimbolo(String nombre){
+        return tabla.stream().anyMatch(simbolo -> (simbolo.nombre.equals(nombre)));
+    }
+
+    public Simbolo getSimbolo(String nombre){
+        for (Simbolo simbolo : tabla) {
+            if(simbolo.nombre.equals(nombre)){
+                return simbolo;
+            }
+        }
+        return null;
+    }
+
+    public void imprimir(){
+        tabla.forEach(simbolo -> {
+            System.out.println("Nombre: "+simbolo.nombre);
+        });
     }
 }

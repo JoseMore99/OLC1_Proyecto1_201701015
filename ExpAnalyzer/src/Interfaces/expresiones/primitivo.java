@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package Interfaces.expresiones;
-
-import Interfaces.instruccion;
 import Interfaces.tabla_s;
 
 /**
@@ -14,9 +12,9 @@ import Interfaces.tabla_s;
  */
 public class primitivo extends Interfaces.instruccion{
     
-    char valor;
+    String valor;
     int ascii;
-    public primitivo(int columna, int fila, char valor) {
+    public primitivo(int columna, int fila, String valor) {
         super(columna, fila);
         this.valor = valor;
         
@@ -25,6 +23,7 @@ public class primitivo extends Interfaces.instruccion{
     @Override
     public Object ejecutar(tabla_s t) {
         //calcular ascii
+        System.out.println("Entro a primitivo");
         return this.valor;
     }
     

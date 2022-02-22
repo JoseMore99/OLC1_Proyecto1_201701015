@@ -25,9 +25,7 @@ public class declarar extends Interfaces.instruccion{
 
     @Override
     public Object ejecutar(tabla_s t) {
-        conj_rango c = (conj_rango) this.expresion.ejecutar(t);
-       
-        System.out.println("nombre: "+this.nombre+" inicio:");
+        System.out.println("declarar");
         return this;
     }
     

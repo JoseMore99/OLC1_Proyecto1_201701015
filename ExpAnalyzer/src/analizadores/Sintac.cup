@@ -1,87 +1,59 @@
 package analizadores; 
 import java_cup.runtime.*;
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 parser code 
 {:
-    /**
-     * Método al que se llama automáticamente ante algún error sintactico.
-     **/ 
-    public void syntax_error(Symbol s){ 
-        System.out.println("Error Sintáctico en la Línea " + (s.left) +
-        " Columna "+s.right+ ". No se esperaba este componente: " +s.value+"."); 
-    } 
+     public String resultado = "";
+        public static LinkedList<Object> instrucciones;
+        public void syntax_error(Symbol s)
+        {
+            System.err.println("Error en la Linea " + (s.right+1) +" Columna "+(s.left+1)+ ". Identificador "+s.value + " no reconocido. Se ha recuperado del error." );
+        }
 
-    /**
-     * Método al que se llama automáticamente ante algún error sintáctico 
-     * en el que ya no es posible una recuperación de errores.
-     **/ 
-    public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{ 
-        System.out.println("Error síntactico irrecuperable en la Línea " + 
-        (s.left)+ " Columna "+s.right+". Componente " + s.value + 
-        " no reconocido."); 
-    }  
+        public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception
+        {
+            System.err.println("Error en la Linea " + (s.right+1)+ " Columna "+(s.left+1)+". Identificador " +s.value + " no reconocido.");
+        }
 :} 
+
+action code
+{:  :}
 
 terminal String LLAVEIZ,LLAVEDER,CONJ,FLECHA;
 terminal String SEPARADOR,DISYUNCION,COMA,COLOCHO;
 terminal String CONCATENACION,DOSPUNTOS,MAS,POR;
 terminal String PUNTOYCOMA,INTERROGACION;
 terminal String ID,CADENA,DIGITO;
+terminal String LETRA,SIMBOLO;
 
-non terminal init;
-non terminal ArrayList<String> instrucciones;
-non terminal instruccion;
-non terminal defconj, rangocolocho,lista,elementolista;
+non terminal INIT;
+non terminal LinkedList<Object> instrucciones;
+non terminal instruc,unitario;
+non terminal defconj, rangocolocho,elementolista;
+non terminal LinkedList<Interfaces.expresiones.primitivo> lista;
 non terminal expregular;
 non terminal lexemas, lexema;
 
 
-start with init; 
+start with INIT; 
 
-init::= LLAVEIZ instrucciones:a SEPARADOR lexemas LLAVEDER
+INIT::= LLAVEIZ instrucciones:a  LLAVEDER{: instrucciones = a; :}
 ;
 
-instrucciones ::= 
-   instruccion instrucciones
- | instruccion
+instrucciones ::= instrucciones:a instruc:b {:RESULT = a; RESULT.add(b);:}
+                | instruc:a                 {: RESULT = new LinkedList<>(); RESULT.add(a); :}
+;
+
+instruc ::= defconj:a PUNTOYCOMA {:RESULT = a;:}
+        | ID FLECHA    expregular PUNTOYCOMA{::}
 ; 
 
-instruccion ::= CONJ DOSPUNTOS ID FLECHA defconj PUNTCOM
-		| ID FLECHA	expregular PUNTOYCOMA
+defconj::=CONJ DOSPUNTOS ID:a FLECHA unitario:b COLOCHO unitario:c {:RESULT = new Interfaces.expresiones.conj_rango(aleft,aright,a,b,c);:}
+        | lista{::}
 ;
 
-defconj ::= rangocolocho
-	|lista
+unitario ::= LETRA:a {:RESULT = new Interfaces.expresiones.primitivo(aleft,aright,a);:}
+            |DIGITO:a {:RESULT = new Interfaces.expresiones.primitivo(aleft,aright,a);:}
+            |SIMBOLO:a {:RESULT = new Interfaces.expresiones.primitivo(aleft,aright,a);:}
 ;
-
-rangocolocho ::= DIGITO:a COLOCHO DIGITO:b {RESULT = new conj_rango(new primitivo(a),new primitivo(b)}
-		| LETRA COLOCHO LETRA
-		//| SIMBOLO COLOCHO SIMBOLO 
-;
-
-lista ::=  lista COMA elementolista
-	| elementolista
-;
-
-elementolista ::= DIGITO
-		|LETRA
-		|SIMBOLO
-;
-
-expregular ::= CONCATENACION expregular expregular
-		| DISYUNCION  expregular expregular
-		| MAS expregular
-		| POR expregular
-		| INTERROGACION  expregular
-		| LLAVEIZ ID LLAVEDER
-		| CADENA
-;
-
-lexemas ::= lexemas lexema
-	|lexema
-;
-			
-lexema ::= ID DOSPUNTOS CADENA PUNTOYCOMA
-;
-
