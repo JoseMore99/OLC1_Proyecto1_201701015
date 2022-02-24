@@ -32,7 +32,7 @@ non terminal LinkedList<Object> instrucciones;
 non terminal instruc,unitario;
 non terminal defconj, rangocolocho,elementolista;
 non terminal LinkedList<Interfaces.expresiones.primitivo> lista;
-non terminal expregular;
+non terminal Interfaces.expresiones.Nodob expregular;
 non terminal lexemas, lexema;
 
 
@@ -46,14 +46,27 @@ instrucciones ::= instrucciones:a instruc:b {:RESULT = a; RESULT.add(b);:}
 ;
 
 instruc ::= defconj:a PUNTOYCOMA {:RESULT = a;:}
-        | ID FLECHA    expregular PUNTOYCOMA{::}
+        | ID:a FLECHA  expregular:b PUNTOYCOMA{:RESULT =new Interfaces.expresiones.ExpRegular(aleft,aright,b,a);:}
 ; 
 
 defconj::=CONJ DOSPUNTOS ID:a FLECHA unitario:b COLOCHO unitario:c {:RESULT = new Interfaces.expresiones.conj_rango(aleft,aright,a,b,c);:}
-        | lista{::}
+        | CONJ DOSPUNTOS ID:a FLECHA lista:b {:RESULT = new Interfaces.expresiones.conj_lista(aleft,aright,b,a);:}
+;
+
+lista::= lista:a COMA unitario:b {:RESULT = a; RESULT.add((Interfaces.expresiones.primitivo)b);:}
+        | unitario:a {: RESULT = new LinkedList<>(); RESULT.add((Interfaces.expresiones.primitivo)a); :}
 ;
 
 unitario ::= LETRA:a {:RESULT = new Interfaces.expresiones.primitivo(aleft,aright,a);:}
             |DIGITO:a {:RESULT = new Interfaces.expresiones.primitivo(aleft,aright,a);:}
             |SIMBOLO:a {:RESULT = new Interfaces.expresiones.primitivo(aleft,aright,a);:}
+;
+
+expregular ::= CONCATENACION expregular:a expregular:b {:RESULT = new Interfaces.expresiones.Nodob(a,b,".");:}
+        | DISYUNCION  expregular:a expregular:b {:RESULT = new Interfaces.expresiones.Nodob(a,b,"|");:}
+        | MAS expregular:a                    {:RESULT =new Interfaces.expresiones.Nodob(a,null,"+");:}
+        | POR expregular:a                   {:RESULT =new Interfaces.expresiones.Nodob(a,null,"*");:}
+        | INTERROGACION  expregular:a         {:RESULT =new Interfaces.expresiones.Nodob(a,null,"?");:}
+        | LLAVEIZ ID:a LLAVEDER               {:RESULT =new Interfaces.expresiones.Nodob(null,null,"{"+a+"}");:}
+        | CADENA:a                            {:RESULT =new Interfaces.expresiones.Nodob(null,null,a);:}
 ;

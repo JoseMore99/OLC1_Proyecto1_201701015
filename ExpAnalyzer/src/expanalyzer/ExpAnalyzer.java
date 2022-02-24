@@ -24,24 +24,30 @@ public class ExpAnalyzer {
         String texto = "{"
                 + "CONJ:digito-> 0~9;\n"
                 + "CONJ:letra -> a~c;\n"
+                + "CONJ:pecas-> a,b,c,3,2,1;\n"
+                + "CONJ:sibom ->%~=;\n"
+                +"exprex1 -> .{letra}*|\"_\" | {letra}{digito};\n"
                 + "}";
         Lex scanner = new Lex(new BufferedReader(new StringReader(texto)));
         Parser parser = new Parser(scanner);
         parser.parse();
         
-        
+        try{
         instrucciones.forEach((instruccion) -> {
-            if(instruccion.getClass()==Interfaces.expresiones.primitivo.class){
-                Interfaces.expresiones.primitivo o =(Interfaces.expresiones.primitivo)instruccion;
-                System.out.println(o.ejecutar(t)); 
+            if(instruccion.getClass()==Interfaces.expresiones.conj_lista.class){
+                Interfaces.expresiones.conj_lista o =(Interfaces.expresiones.conj_lista)instruccion;
+                o.ejecutar(t); 
             }
             if(instruccion.getClass()==Interfaces.expresiones.conj_rango.class){
                 Interfaces.expresiones.conj_rango o =(Interfaces.expresiones.conj_rango)instruccion;
                 o.ejecutar(t);
             }
+            if(instruccion.getClass()==Interfaces.expresiones.ExpRegular.class){
+                Interfaces.expresiones.ExpRegular o =(Interfaces.expresiones.ExpRegular)instruccion;
+                o.ejecutar(t);
+            }
             
         });
-        try{
         }catch(Exception e){
             
         }

@@ -23,7 +23,7 @@ public class primitivo extends Interfaces.instruccion{
     @Override
     public Object ejecutar(tabla_s t) {
         //calcular ascii
-        System.out.println("Entro a primitivo");
+        //System.out.println("Entro a primitivo");
         return this.valor;
     }
     

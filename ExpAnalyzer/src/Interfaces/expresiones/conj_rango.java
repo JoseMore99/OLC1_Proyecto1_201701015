@@ -18,6 +18,7 @@ public class conj_rango extends Interfaces.instruccion {
     String inicio_char,fin_char,id;
     public conj_rango(int columna, int fila,String id, Object inicio,Object fin) {
         super(columna, fila);
+        this.id = id;
         this.inicio = (primitivo) inicio;
         this.fin = (primitivo) fin;
         
@@ -27,7 +28,7 @@ public class conj_rango extends Interfaces.instruccion {
     public Object ejecutar(tabla_s t) {
         this.inicio_char =  (String) inicio.ejecutar(t);
         this.fin_char =  (String) fin.ejecutar(t);
-         System.out.println("conjunto:"+inicio_char+"~"+fin_char);
+         System.out.println("conjunto "+id +":"+inicio_char+"~"+fin_char);
         return this;
     }
     
