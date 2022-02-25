@@ -62,11 +62,11 @@ unitario ::= LETRA:a {:RESULT = new Interfaces.expresiones.primitivo(aleft,arigh
             |SIMBOLO:a {:RESULT = new Interfaces.expresiones.primitivo(aleft,aright,a);:}
 ;
 
-expregular ::= CONCATENACION expregular:a expregular:b {:RESULT = new Interfaces.expresiones.Nodob(a,b,".");:}
-        | DISYUNCION  expregular:a expregular:b {:RESULT = new Interfaces.expresiones.Nodob(a,b,"|");:}
-        | MAS expregular:a                    {:RESULT =new Interfaces.expresiones.Nodob(a,null,"+");:}
-        | POR expregular:a                   {:RESULT =new Interfaces.expresiones.Nodob(a,null,"*");:}
-        | INTERROGACION  expregular:a         {:RESULT =new Interfaces.expresiones.Nodob(a,null,"?");:}
-        | LLAVEIZ ID:a LLAVEDER               {:RESULT =new Interfaces.expresiones.Nodob(null,null,"{"+a+"}");:}
-        | CADENA:a                            {:RESULT =new Interfaces.expresiones.Nodob(null,null,a);:}
+expregular ::= CONCATENACION expregular:a expregular:b {:RESULT = new Interfaces.expresiones.Nodob(a,b,".","simbolo");:}
+        | DISYUNCION  expregular:a expregular:b {:RESULT = new Interfaces.expresiones.Nodob(a,b,"|","simbolo");:}
+        | MAS expregular:a                    {:RESULT =new Interfaces.expresiones.Nodob(a,null,"+","simbolo");:}
+        | POR expregular:a                   {:RESULT =new Interfaces.expresiones.Nodob(a,null,"*","simbolo");:}
+        | INTERROGACION  expregular:a         {:RESULT =new Interfaces.expresiones.Nodob(a,null,"?","simbolo");:}
+        | LLAVEIZ ID:a LLAVEDER               {:RESULT =new Interfaces.expresiones.Nodob(null,null,"{"+a+"}","conjunto");:}
+        | CADENA:a                            {:RESULT =new Interfaces.expresiones.Nodob(null,null,a,"cadena");:}
 ;

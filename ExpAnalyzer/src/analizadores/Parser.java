@@ -373,7 +373,7 @@ class CUP$Parser$actions {
 		int bleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
 		Interfaces.expresiones.Nodob b = (Interfaces.expresiones.Nodob)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-		RESULT = new Interfaces.expresiones.Nodob(a,b,".");
+		RESULT = new Interfaces.expresiones.Nodob(a,b,".","simbolo");
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("expregular",8, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -388,7 +388,7 @@ class CUP$Parser$actions {
 		int bleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
 		Interfaces.expresiones.Nodob b = (Interfaces.expresiones.Nodob)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-		RESULT = new Interfaces.expresiones.Nodob(a,b,"|");
+		RESULT = new Interfaces.expresiones.Nodob(a,b,"|","simbolo");
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("expregular",8, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -400,7 +400,7 @@ class CUP$Parser$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
 		Interfaces.expresiones.Nodob a = (Interfaces.expresiones.Nodob)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-		RESULT =new Interfaces.expresiones.Nodob(a,null,"+");
+		RESULT =new Interfaces.expresiones.Nodob(a,null,"+","simbolo");
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("expregular",8, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -412,7 +412,7 @@ class CUP$Parser$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
 		Interfaces.expresiones.Nodob a = (Interfaces.expresiones.Nodob)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-		RESULT =new Interfaces.expresiones.Nodob(a,null,"*");
+		RESULT =new Interfaces.expresiones.Nodob(a,null,"*","simbolo");
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("expregular",8, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -424,7 +424,7 @@ class CUP$Parser$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
 		Interfaces.expresiones.Nodob a = (Interfaces.expresiones.Nodob)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-		RESULT =new Interfaces.expresiones.Nodob(a,null,"?");
+		RESULT =new Interfaces.expresiones.Nodob(a,null,"?","simbolo");
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("expregular",8, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -436,7 +436,7 @@ class CUP$Parser$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
-		RESULT =new Interfaces.expresiones.Nodob(null,null,"{"+a+"}");
+		RESULT =new Interfaces.expresiones.Nodob(null,null,"{"+a+"}","conjunto");
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("expregular",8, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -448,7 +448,7 @@ class CUP$Parser$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-		RESULT =new Interfaces.expresiones.Nodob(null,null,a);
+		RESULT =new Interfaces.expresiones.Nodob(null,null,a,"cadena");
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("expregular",8, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;

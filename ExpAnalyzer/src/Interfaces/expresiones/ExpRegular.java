@@ -6,6 +6,9 @@
 package Interfaces.expresiones;
 
 import Interfaces.tabla_s;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  *
@@ -13,7 +16,7 @@ import Interfaces.tabla_s;
  */
 public class ExpRegular extends Interfaces.instruccion {
     Nodob expresion;
-    String id;
+    String id,acumulado;
 
     public ExpRegular(int columna, int fila, Nodob expresion, String id) {
          super(columna, fila);
@@ -24,12 +27,50 @@ public class ExpRegular extends Interfaces.instruccion {
     @Override
     public Object ejecutar(tabla_s t) {
         System.out.println(this.id);
-        inorden(this.expresion);
+        acumulado ="";
+        FileWriter ficha = null;
+        PrintWriter escritor = null;
+        try
+        {
+            ficha = new FileWriter("src/ARBOLES_201701015/arbol"+id+".dot");
+            escritor = new PrintWriter(ficha);
+
+                escritor.println("digraph G{\nnode [shape=circle]; ");
+                inorden(this.expresion);
+                escritor.println(acumulado);
+                escritor.println("}");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+           try {
+           // aprovechamos el finally para asegurarnos que se cierra el fichero.
+              ficha.close();
+           } catch (Exception e2) {
+              e2.printStackTrace();
+           }
+        }
+        try {
+            String cmd = "dot -Tpng src/ARBOLES_201701015/arbol"+id+".dot -o src/ARBOLES_201701015/arbol"+id+".png";
+            Runtime.getRuntime().exec(cmd); 
+        } catch (IOException ioe){
+            System.out.println (ioe);
+        }
         return this;
     }
     
     public void inorden (Nodob raiz){
         if(raiz!=null){
+            if (raiz.tipo.equals("cadena")){
+                acumulado = acumulado + "nodo"+raiz.id+"[label="+raiz.valor+"];\n";
+            }else{
+                 acumulado = acumulado + "nodo"+raiz.id+"[label=\""+raiz.valor+"\"];\n";
+            }
+            if (raiz.iz!=null){
+                acumulado=acumulado+"nodo"+raiz.id+"->nodo"+raiz.iz.id+"\n";
+            }
+            if (raiz.der!=null){
+                acumulado=acumulado+"nodo"+raiz.id+"->nodo"+raiz.der.id+"\n";
+            }
             inorden(raiz.iz);
             System.out.println(raiz.valor);
             inorden(raiz.der);

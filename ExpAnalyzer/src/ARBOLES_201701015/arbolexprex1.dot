@@ -1,0 +1,19 @@
+digraph G{
+node [shape=circle]; 
+nodo7[label="."];
+nodo7->nodo0
+nodo7->nodo6
+nodo0[label="{letra}"];
+nodo6[label="*"];
+nodo6->nodo5
+nodo5[label="|"];
+nodo5->nodo1
+nodo5->nodo4
+nodo1[label="_"];
+nodo4[label="|"];
+nodo4->nodo2
+nodo4->nodo3
+nodo2[label="{letra}"];
+nodo3[label="{digito}"];
+
+}

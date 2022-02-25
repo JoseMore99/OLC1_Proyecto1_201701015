@@ -11,12 +11,17 @@ package Interfaces.expresiones;
  */
 public class Nodob {
     Nodob iz,der;
-    String valor;
+    String valor,tipo;
+    int id;
+    static int contadores=0;
 
-    public Nodob(Nodob iz, Nodob der, String valor) {
+    public Nodob(Nodob iz, Nodob der, String valor,String tipo) {
         this.iz = iz;
         this.der = der;
         this.valor = valor;
+        this.tipo=tipo;
+        this.id = contadores;
+        contadores++;
     }
     
 }
