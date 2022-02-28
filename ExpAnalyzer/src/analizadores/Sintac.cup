@@ -46,7 +46,7 @@ instrucciones ::= instrucciones:a instruc:b {:RESULT = a; RESULT.add(b);:}
 ;
 
 instruc ::= defconj:a PUNTOYCOMA {:RESULT = a;:}
-        | ID:a FLECHA  expregular:b PUNTOYCOMA{:RESULT =new Interfaces.expresiones.ExpRegular(aleft,aright,b,a);:}
+        | ID:a FLECHA  expregular:b PUNTOYCOMA{:RESULT =new Interfaces.expresiones.ExpRegular(aleft,aright,b,a);Interfaces.expresiones.Nodob.contador_hojas=1;:}
 ; 
 
 defconj::=CONJ DOSPUNTOS ID:a FLECHA unitario:b COLOCHO unitario:c {:RESULT = new Interfaces.expresiones.conj_rango(aleft,aright,a,b,c);:}

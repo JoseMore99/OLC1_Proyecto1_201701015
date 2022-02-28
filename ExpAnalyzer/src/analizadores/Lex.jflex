@@ -29,8 +29,7 @@ id   = [a-zA-Z]+([a-zA-Z]|[0-9]|"_")*
 
 LineTerminator = \r|\n|\r\n
 InputCharacter = [^\r\n]
-
-comentariosimple    = "\/\/" {InputCharacter}* {LineTerminator}?
+comentario   = "//" {InputCharacter}* {LineTerminator}?
 
 %%
 
@@ -57,6 +56,6 @@ comentariosimple    = "\/\/" {InputCharacter}* {LineTerminator}?
 {cadena} {return new Symbol(sym.CADENA,yycolumn, yyline, yytext());}
 {digito} {return new Symbol(sym.DIGITO,yycolumn, yyline, yytext());} 
 
-{comentariosimple}      {System.out.println("Comentario: "+yytext()); }
+{comentario}      {System.out.println("Comentario: "+yytext()); }
 [ \t\r\n\f]             {/* Ignorar espacios en blanco*/}
 .                       { System.out.println("Error Lexico: "+yytext()+" Linea "+yyline+" Columna "+yycolumn);}

@@ -263,6 +263,7 @@ class CUP$Parser$actions {
 		int bright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
 		Interfaces.expresiones.Nodob b = (Interfaces.expresiones.Nodob)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		RESULT =new Interfaces.expresiones.ExpRegular(aleft,aright,b,a);
+                Interfaces.expresiones.Nodob.contador_hojas=1;
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("instruc",2, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
