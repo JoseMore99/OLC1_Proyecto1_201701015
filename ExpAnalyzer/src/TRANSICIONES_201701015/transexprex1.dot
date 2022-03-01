@@ -1,0 +1,15 @@
+digraph G{
+node [shape=record];
+table [ label = <
+<table>
+<tr><td bgcolor="violet">Terminal</td><td>\{ letra \}</td><td>"_"</td><td>\{ digito \}</td></tr>
+<tr>
+<td bgcolor="violet">S0</td><td>S1</td>
+</tr>
+<tr>
+<td bgcolor="violet">S1</td><td>S1</td>
+<td>S1</td>
+<td>S1</td>
+</tr>
+</table>> ]
+}
