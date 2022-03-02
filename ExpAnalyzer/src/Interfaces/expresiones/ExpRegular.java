@@ -42,6 +42,7 @@ public class ExpRegular extends Interfaces.instruccion {
         grafArbol();
         grafTablaSig();
         gentrans();
+        grafAFD();
         return this;
     }
     
@@ -303,6 +304,46 @@ public class ExpRegular extends Interfaces.instruccion {
                 
             });
         }); 
+    }
+    
+    public void grafAFD(){
+        FileWriter ficha = null;
+        PrintWriter escritor = null;
+        try
+        {
+            ficha = new FileWriter("src/AFD_201701015/afd"+id+".dot");
+            escritor = new PrintWriter(ficha);
+            escritor.println("digraph G{\nnode [shape=circle];\nrankdir =LR;");
+            
+            for (estado est : estados) {
+                if(est.siguientes.contains(""+hojas)){
+                    escritor.println(est.nombre+"[shape=\"doublecircle\"]");
+                }
+                for (transision T : est.Transisiones) {
+                    String transi =T.terminal.replace("{","\\{ ").replace("}"," \\}");
+                    transi = transi.replace("\"","\\\"");
+                    escritor.println(est.nombre+"->"+T.Nombre+"[label=\""+transi+"\"]");
+                }
+            }
+            
+            
+            escritor.println("}");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+           try {
+           // aprovechamos el finally para asegurarnos que se cierra el fichero.
+              ficha.close();
+           } catch (Exception e2) {
+              e2.printStackTrace();
+           }
+        }
+        try {
+            String cmd = "dot -Tpng src/AFD_201701015/afd"+id+".dot -o src/AFD_201701015/afd"+id+".png";
+            Runtime.getRuntime().exec(cmd); 
+        } catch (IOException ioe){
+            System.out.println (ioe);
+        }
     }
     
     public boolean existeEstado(LinkedList<Object> sig){
