@@ -6,6 +6,7 @@ parser code
 {:
      public String resultado = "";
         public static LinkedList<Object> instrucciones;
+        public static LinkedList<Object> lexemas;
         public void syntax_error(Symbol s)
         {
             System.err.println("Error en la Linea " + (s.right+1) +" Columna "+(s.left+1)+ ". Identificador "+s.value + " no reconocido. Se ha recuperado del error." );
@@ -28,17 +29,16 @@ terminal String ID,CADENA,DIGITO;
 terminal String LETRA,SIMBOLO;
 
 non terminal INIT;
-non terminal LinkedList<Object> instrucciones;
+non terminal LinkedList<Object> instrucciones,lexemas;
 non terminal instruc,unitario;
 non terminal defconj, rangocolocho,elementolista;
 non terminal LinkedList<Interfaces.expresiones.primitivo> lista;
 non terminal Interfaces.expresiones.Nodob expregular;
-non terminal lexemas, lexema;
-
+non terminal lexema;
 
 start with INIT; 
 
-INIT::= LLAVEIZ instrucciones:a  LLAVEDER{: instrucciones = a; :}
+INIT::= LLAVEIZ instrucciones:a  SEPARADOR SEPARADOR lexemas:b LLAVEDER {: instrucciones = a; lexemas = b; :}
 ;
 
 instrucciones ::= instrucciones:a instruc:b {:RESULT = a; RESULT.add(b);:}
@@ -69,4 +69,11 @@ expregular ::= CONCATENACION expregular:a expregular:b {:RESULT = new Interfaces
         | INTERROGACION  expregular:a         {:RESULT =new Interfaces.expresiones.Nodob(a,null,"?","simbolo");:}
         | LLAVEIZ ID:a LLAVEDER               {:RESULT =new Interfaces.expresiones.Nodob(null,null,"{"+a+"}","conjunto");:}
         | CADENA:a                            {:RESULT =new Interfaces.expresiones.Nodob(null,null,a,"cadena");:}
+;
+
+lexemas ::= lexemas:a lexema:b {:RESULT = a; RESULT.add(b);:}
+          | lexema:a         {: RESULT = new LinkedList<>(); RESULT.add(a); :}
+;
+
+lexema ::= ID:a DOSPUNTOS CADENA:b PUNTOYCOMA {: RESULT = new Interfaces.expresiones.lexemas(aleft,aright,a,b);:}
 ;

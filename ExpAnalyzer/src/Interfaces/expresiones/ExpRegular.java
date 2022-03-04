@@ -199,13 +199,13 @@ public class ExpRegular extends Interfaces.instruccion {
         inicio.siguientes.addAll(Arrays.asList(inicias));
         estados.add(inicio);
         grafTablaTrans();
-        for (estado est : estados) {
+        /*for (estado est : estados) {
             System.out.print("-"+est.nombre+"-");
             for (transision Trans : est.Transisiones) {
                 System.out.print(Trans.Nombre+"-"+Trans.terminal+",");
             }
             System.out.println("");
-        }
+        }*/
         FileWriter ficha = null;
         PrintWriter escritor = null;
         
@@ -267,8 +267,8 @@ public class ExpRegular extends Interfaces.instruccion {
         /*System.out.println(aux.nombre);
         for (Object siguiente : aux.siguientes) {
             System.out.print(siguiente);
-        }*/
-        System.out.println("");
+        }
+        System.out.println("");*/
         terminales.forEach((Object term) -> {//revisar cada terminal
             LinkedList<Object> acumulado= new LinkedList<>();
             aux.siguientes.forEach(( Object trans) -> {//revisar cada transision del estado actual
@@ -286,11 +286,11 @@ public class ExpRegular extends Interfaces.instruccion {
                 boolean existe = existeEstado(acumulado);//verificar si lo acumulado ya existe
                 if (!existe && !acumulado.isEmpty()){
                     estado nuevo = new estado("S"+contador_est);
-                    System.out.println("nuevo S"+contador_est);
+                    /*System.out.println("nuevo S"+contador_est);
                     for (Object object : acumulado) {
                         System.out.print(object+",");
                     }
-                    System.out.println("");
+                    System.out.println("");*/
                     nuevo.siguientes.addAll(acumulado);
                     estados.add(nuevo);
                     contador_est++;

@@ -1,0 +1,20 @@
+digraph G{
+node [shape=record];
+table [ label = <
+<table>
+<tr><td bgcolor="violet">Terminal</td><td>\{ simbols \}</td><td>\{ minus \}</td><td>\{ mayus \}</td></tr>
+<tr>
+<td bgcolor="violet">S0</td><td>S1</td>
+</tr>
+<tr>
+<td bgcolor="violet">S1</td><td>S1</td>
+<td>S2</td>
+<td>S2</td>
+</tr>
+<tr>
+<td bgcolor="violet">S2</td><td></td>
+<td>S2</td>
+<td>S2</td>
+</tr>
+</table>> ]
+}

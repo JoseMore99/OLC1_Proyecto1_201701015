@@ -4,11 +4,13 @@
  * and open the template in the editor.
  */
 package expanalyzer;
+
 import analizadores.Parser;
 import analizadores.Lex;
 import static analizadores.Parser.instrucciones;
 import java.io.BufferedReader;
 import java.io.StringReader;
+
 /**
  *
  * @author Moreira Paz
@@ -26,35 +28,12 @@ public class ExpAnalyzer {
                 + "CONJ:letra -> a~c;\n"
                 + "CONJ:pecas-> a,b,c,3,2,1;\n"
                 + "CONJ:sibom ->%~=;\n"
-                +"exprex1 -> .{letra}*|\"_\" | {letra}{digito};\n"
+                + "exprex1 -> .{letra}*|\"_\" | {letra}{digito};\n"
                 + "}";
-        Lex scanner = new Lex(new BufferedReader(new StringReader(texto)));
-        Parser parser = new Parser(scanner);
-        parser.parse();
         
-        try{
-        instrucciones.forEach((instruccion) -> {
-            if(instruccion.getClass()==Interfaces.expresiones.conj_lista.class){
-                Interfaces.expresiones.conj_lista o =(Interfaces.expresiones.conj_lista)instruccion;
-                o.ejecutar(t); 
-            }
-            if(instruccion.getClass()==Interfaces.expresiones.conj_rango.class){
-                Interfaces.expresiones.conj_rango o =(Interfaces.expresiones.conj_rango)instruccion;
-                o.ejecutar(t);
-            }
-            if(instruccion.getClass()==Interfaces.expresiones.ExpRegular.class){
-                Interfaces.expresiones.ExpRegular o =(Interfaces.expresiones.ExpRegular)instruccion;
-                o.ejecutar(t);
-            }
-            
-        });
-        }catch(Exception e){
-            
-        }
-        System.out.println("Finalizando analisis...");
-        
-        //Ventana V = new Ventana();
-        //V.setVisible(true);
+
+        Ventana V = new Ventana();
+        V.setVisible(true);
     }
-    
+
 }
