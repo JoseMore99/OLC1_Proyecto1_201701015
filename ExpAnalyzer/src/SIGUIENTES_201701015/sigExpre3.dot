@@ -1,0 +1,43 @@
+digraph G{
+node [shape=record];
+table [ label = <
+<table>
+<tr><td>Terminal</td><td>id</td><td>siguientes</td></tr>
+<tr>
+<td>\{ conj1 \}</td><td>1</td><td>-2-</td>
+</tr>
+<tr>
+<td>\{ conj2 \}</td><td>2</td><td>-4--6--2-</td>
+</tr>
+<tr>
+<td>"!"</td><td>3</td><td>-4--6--3-</td>
+</tr>
+<tr>
+<td>\{ conj1 \}</td><td>4</td><td>-5-</td>
+</tr>
+<tr>
+<td>\{ conj2 \}</td><td>5</td><td>-7--9--5-</td>
+</tr>
+<tr>
+<td>"!"</td><td>6</td><td>-7--9--6-</td>
+</tr>
+<tr>
+<td>"a"</td><td>7</td><td>-11--8-</td>
+</tr>
+<tr>
+<td>"n"</td><td>8</td><td>-11-</td>
+</tr>
+<tr>
+<td>\{ conj3 \}</td><td>9</td><td>-11--9--10-</td>
+</tr>
+<tr>
+<td>\{ conj4 \}</td><td>10</td><td>-11--9--10-</td>
+</tr>
+<tr>
+<td>"finish"</td><td>11</td><td>-12-</td>
+</tr>
+<tr>
+<td>#</td><td>12</td><td></td>
+</tr>
+</table>> ]
+}

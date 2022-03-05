@@ -1,0 +1,64 @@
+digraph G{
+node [shape=record];
+table [ label = <
+<table>
+<tr><td>Terminal</td><td>id</td><td>siguientes</td></tr>
+<tr>
+<td>"hi"</td><td>1</td><td>-2-</td>
+</tr>
+<tr>
+<td>"'"</td><td>2</td><td>-3-</td>
+</tr>
+<tr>
+<td>\{ conj5 \}</td><td>3</td><td>-19--10--13--15-</td>
+</tr>
+<tr>
+<td>\{ grupo_1 \}</td><td>4</td><td>-5-</td>
+</tr>
+<tr>
+<td>\{ conj6 \}</td><td>5</td><td>-19--10--13--15--4--6--4--6-</td>
+</tr>
+<tr>
+<td>"dddd"</td><td>6</td><td>-19--10--13--15--4--6--4--6--6--6--7--9-</td>
+</tr>
+<tr>
+<td>"hola"</td><td>7</td><td>-8-</td>
+</tr>
+<tr>
+<td>"compi"</td><td>8</td><td>-19--10--13--15--4--6--4--6--6--6--7--9--7--9-</td>
+</tr>
+<tr>
+<td>"conjunto"</td><td>9</td><td>-19--10--13--15--4--6--4--6--6--6--7--9--7--9-</td>
+</tr>
+<tr>
+<td>"hi"</td><td>10</td><td>-11-</td>
+</tr>
+<tr>
+<td>"'"</td><td>11</td><td>-12-</td>
+</tr>
+<tr>
+<td>\{ conj6 \}</td><td>12</td><td>-19-</td>
+</tr>
+<tr>
+<td>\{ conj8 \}</td><td>13</td><td>-14-</td>
+</tr>
+<tr>
+<td>\{ conj7 \}</td><td>14</td><td>-19--13--15--13--15-</td>
+</tr>
+<tr>
+<td>"dddd"</td><td>15</td><td>-19--13--15--13--15--15--15--16--18-</td>
+</tr>
+<tr>
+<td>"hola"</td><td>16</td><td>-17-</td>
+</tr>
+<tr>
+<td>"compi"</td><td>17</td><td>-19--13--15--13--15--15--15--16--18--16--18-</td>
+</tr>
+<tr>
+<td>\{ grupo_1 \}</td><td>18</td><td>-19--13--15--13--15--15--15--16--18--16--18-</td>
+</tr>
+<tr>
+<td>#</td><td>19</td><td></td>
+</tr>
+</table>> ]
+}

@@ -1,0 +1,84 @@
+digraph G{
+node [shape=record];
+table [ label = <
+<table>
+<tr><td bgcolor="violet">Terminal</td><td>\{ conj1 \}</td><td>\{ conj2 \}</td><td>"!"</td><td>"a"</td><td>"n"</td><td>\{ conj3 \}</td><td>\{ conj4 \}</td><td>"finish"</td></tr>
+<tr>
+<td bgcolor="violet">S0</td><td>S1</td>
+<td></td>
+<td>S10</td>
+</tr>
+<tr>
+<td bgcolor="violet">S1</td><td></td>
+<td>S2</td>
+</tr>
+<tr>
+<td bgcolor="violet">S2</td><td>S3</td>
+<td>S2</td>
+<td>S9</td>
+</tr>
+<tr>
+<td bgcolor="violet">S3</td><td></td>
+<td>S4</td>
+</tr>
+<tr>
+<td bgcolor="violet">S4</td><td></td>
+<td>S4</td>
+<td></td>
+<td>S5</td>
+<td></td>
+<td>S8</td>
+</tr>
+<tr>
+<td bgcolor="violet">S5</td><td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>S6</td>
+<td></td>
+<td></td>
+<td>S7</td>
+</tr>
+<tr>
+<td bgcolor="violet">S6</td><td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>S7</td>
+</tr>
+<tr>
+<td bgcolor="violet">S7</td></tr>
+<tr>
+<td bgcolor="violet">S8</td><td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>S8</td>
+<td>S8</td>
+<td>S7</td>
+</tr>
+<tr>
+<td bgcolor="violet">S9</td><td></td>
+<td></td>
+<td>S9</td>
+<td>S5</td>
+<td></td>
+<td>S8</td>
+</tr>
+<tr>
+<td bgcolor="violet">S10</td><td>S3</td>
+<td></td>
+<td>S9</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table>> ]
+}

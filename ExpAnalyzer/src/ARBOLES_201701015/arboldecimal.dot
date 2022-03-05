@@ -1,0 +1,22 @@
+digraph G{
+node [shape=record];
+
+nodo27[label="1|{false|\.}|4"];
+nodo27->nodo25
+nodo27->nodo26
+nodo25[label="1|{false|\.}|3"];
+nodo25->nodo20
+nodo25->nodo24
+nodo20[label="1|{false|\+}|1"];
+nodo20->nodo19
+nodo19[label="1|{false|{digito}|1}|1"];
+nodo24[label="2|{false|\.}|3"];
+nodo24->nodo21
+nodo24->nodo23
+nodo21[label="2|{false|.|2}|2"];
+nodo23[label="3|{false|\+}|3"];
+nodo23->nodo22
+nodo22[label="3|{false|{digito}|3}|3"];
+nodo26[label="4|{false|#|4}|4"];
+
+}

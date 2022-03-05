@@ -1,0 +1,22 @@
+digraph G{
+node [shape=record];
+table [ label = <
+<table>
+<tr><td>Terminal</td><td>id</td><td>siguientes</td></tr>
+<tr>
+<td>"a"</td><td>1</td><td>-4--2--3-</td>
+</tr>
+<tr>
+<td>\{ impar \}</td><td>2</td><td>-4--2--3-</td>
+</tr>
+<tr>
+<td>\{ letrac \}</td><td>3</td><td>-4--2--3-</td>
+</tr>
+<tr>
+<td>"b"</td><td>4</td><td>-5-</td>
+</tr>
+<tr>
+<td>#</td><td>5</td><td></td>
+</tr>
+</table>> ]
+}

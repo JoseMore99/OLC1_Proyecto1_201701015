@@ -1,0 +1,27 @@
+digraph G{
+node [shape=circle];
+rankdir =LR;
+S0->S1[label="\{ conj1 \}"]
+S0->S10[label="\"!\""]
+S1->S2[label="\{ conj2 \}"]
+S2->S3[label="\{ conj1 \}"]
+S2->S2[label="\{ conj2 \}"]
+S2->S9[label="\"!\""]
+S3->S4[label="\{ conj2 \}"]
+S4->S4[label="\{ conj2 \}"]
+S4->S5[label="\"a\""]
+S4->S8[label="\{ conj3 \}"]
+S5->S6[label="\"n\""]
+S5->S7[label="\"finish\""]
+S6->S7[label="\"finish\""]
+S7[shape="doublecircle"]
+S8->S8[label="\{ conj3 \}"]
+S8->S8[label="\{ conj4 \}"]
+S8->S7[label="\"finish\""]
+S9->S9[label="\"!\""]
+S9->S5[label="\"a\""]
+S9->S8[label="\{ conj3 \}"]
+S10->S3[label="\{ conj1 \}"]
+S10->S9[label="\"!\""]
+S10->S10[label="\"!\""]
+}
