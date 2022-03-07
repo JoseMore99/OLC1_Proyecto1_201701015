@@ -1,6 +1,7 @@
 
 package analizadores;
 import java_cup.runtime.*;
+import static analizadores.Parser.error;
 %%
 
 %public 
@@ -26,10 +27,7 @@ letra = [a-zA-Z]
 simbolo= [\!-\}]
 cadena = [\"][^\"\n]+[\"]
 id   = [a-zA-Z]+([a-zA-Z]|[0-9]|"_")*
-
-LineTerminator = \r|\n|\r\n
-InputCharacter = [^\r\n]
-comentario   = "//" {InputCharacter}* {LineTerminator}?
+comentario   = "//" [^\r\n]* (\r|\n|\r\n)?
 comentariosmult = [<!][^]*[!>]
 
 %%
@@ -60,4 +58,4 @@ comentariosmult = [<!][^]*[!>]
 {comentario}      {System.out.println("Comentario: "+yytext()); }
 {comentariosmult} {System.out.println("Comentario Multiple: "+yytext()); }
 [ \t\r\n\f]             {/* Ignorar espacios en blanco*/}
-.                       { System.out.println("Error Lexico: "+yytext()+" Linea "+yyline+" Columna "+yycolumn);}
+.                       {error.add(new MErrores("lexico","lexema "+yytext() + " no reconocido",yyline,yycolumn));}

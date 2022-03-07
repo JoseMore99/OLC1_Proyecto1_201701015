@@ -11,14 +11,15 @@ package analizadores;
  */
 public class generador {
     public static void main(String[] args) {
-		try {
-			String ruta =  "src/analizadores/";
-			String opcFlex[] =  {ruta+"Lex.jflex","-d",ruta};
-			jflex.Main.generate(opcFlex);
-			
-			String opcCup[] =  {"-destdir", ruta,"-parser","Parser",ruta+"Sintac.cup"};
-			java_cup.Main.main(opcCup);
-		} catch (Exception e) {
-		}
+        try {
+            String ruta =  "src/analizadores/";
+            String opcFlex[] =  {ruta+"Lex.jflex","-d",ruta};
+            jflex.Main.generate(opcFlex);
+
+            String opcCup[] =  {"-destdir", ruta,"-parser","Parser",ruta+"Sintac.cup"};
+            java_cup.Main.main(opcCup);
+            } catch (Exception e) {
+            System.out.println("fallo Parser");
+            }
 	}
 }

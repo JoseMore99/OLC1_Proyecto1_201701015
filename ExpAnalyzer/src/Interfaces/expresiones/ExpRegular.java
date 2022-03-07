@@ -18,7 +18,8 @@ import java.util.LinkedList;
  */
 public class ExpRegular extends Interfaces.instruccion {
     Nodob expresion;
-    String id,acumulado;
+    public String id;
+    String acumulado;
     int hojas,contadorh=0;
     Tab_siguientes TablaSig [];
     LinkedList<estado> estados;

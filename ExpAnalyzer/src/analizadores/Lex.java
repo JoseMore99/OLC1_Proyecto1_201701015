@@ -5,6 +5,7 @@
 
 package analizadores;
 import java_cup.runtime.*;
+import static analizadores.Parser.error;
 
 // See https://github.com/jflex-de/jflex/issues/222
 @SuppressWarnings("FallThrough")
@@ -704,7 +705,7 @@ public class Lex implements java_cup.runtime.Scanner {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
-            { System.out.println("Error Lexico: "+yytext()+" Linea "+yyline+" Columna "+yycolumn);
+            { error.add(new MErrores("lexico","lexema "+yytext() + " no reconocido",yyline,yycolumn));
             }
             // fall through
           case 24: break;

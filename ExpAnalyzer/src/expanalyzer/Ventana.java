@@ -6,16 +6,23 @@
 package expanalyzer;
 
 import analizadores.Lex;
+import analizadores.MErrores;
 import analizadores.Parser;
+import static analizadores.Parser.error;
 import static analizadores.Parser.instrucciones;
 import static analizadores.Parser.lexemas;
+import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.StringReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -51,11 +58,12 @@ public class Ventana extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtsalida = new javax.swing.JTextArea();
-        jLabel3 = new javax.swing.JLabel();
+        lblimage = new javax.swing.JLabel();
         btnAnt = new javax.swing.JButton();
         btnSig = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        boximg = new javax.swing.JComboBox<>();
         btnGraf = new javax.swing.JButton();
+        jScrollBar1 = new javax.swing.JScrollBar();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         IntemAbrir = new javax.swing.JMenuItem();
@@ -86,8 +94,6 @@ public class Ventana extends javax.swing.JFrame {
         txtsalida.setRows(5);
         jScrollPane3.setViewportView(txtsalida);
 
-        jLabel3.setText("None");
-
         btnAnt.setText("Anterior");
         btnAnt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,7 +103,12 @@ public class Ventana extends javax.swing.JFrame {
 
         btnSig.setText("Siguiente");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ARBOLES", "SIGUIENTES", "TRANSISIONES", "AFD" }));
+        boximg.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ARBOLES", "SIGUIENTES", "TRANSISIONES", "AFD" }));
+        boximg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boximgActionPerformed(evt);
+            }
+        });
 
         btnGraf.setText("Ver graficas");
         btnGraf.addActionListener(new java.awt.event.ActionListener() {
@@ -117,60 +128,59 @@ public class Ventana extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
-                        .addContainerGap(53, Short.MAX_VALUE))
+                        .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(114, 114, 114)
+                                .addGap(115, 115, 115)
                                 .addComponent(btnAnalizar)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(31, 31, 31)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnGraf))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(45, 45, 45)
                                         .addComponent(btnAnt)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnSig)))
+                                        .addComponent(btnSig))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(boximg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnGraf)))
                                 .addGap(37, 37, 37))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(129, 129, 129)
-                                .addComponent(jLabel3)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                .addGap(26, 26, 26)
+                                .addComponent(lblimage, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(66, Short.MAX_VALUE))))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnGraf))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addGap(87, 87, 87)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnAnt)
-                            .addComponent(btnSig))
-                        .addGap(43, 43, 43))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAnalizar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(boximg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGraf))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblimage, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAnalizar)
+                    .addComponent(btnAnt)
+                    .addComponent(btnSig))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jMenu1.setText("Archivo");
@@ -225,7 +235,28 @@ public class Ventana extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        if (!error.isEmpty()){
+            FileWriter ficha;
+            try {
+                ficha = new FileWriter("errores.html");
+                PrintWriter escritor = new PrintWriter(ficha);
+                  escritor.println("<!DOCTYPE html>\n<html>\n<head><title>errores</title></head>\n<body>\n<table border=\"1\">");
+                  escritor.println("<tr><td>#</td><td>tipo</td><td>desc</td><td>linea</td><td>columna</td>");
+                  int contador = 1;
+                  for (MErrores mErrores : error) {
+                    escritor.println("<tr><td>"+contador+"</td>"
+                            + "<td>"+mErrores.tipo+"</td>"
+                            + "<td>"+mErrores.desc+"</td>"
+                            + "<td>"+mErrores.linea+"</td>"
+                            + "<td>"+mErrores.columna+"</td></tr>");
+                    contador++;
+                    }
+                  escritor.println("</table></body>\n</html>");
+                   ficha.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         try {
             instrucciones.forEach((instruccion) -> {
                 if (instruccion.getClass() == Interfaces.expresiones.conj_lista.class) {
@@ -287,11 +318,46 @@ public class Ventana extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_IntemAbrirActionPerformed
-
+    static int cuentaImg;
+    public String rutaImg;
     private void btnGrafActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrafActionPerformed
         // TODO add your handling code here:
+        System.out.println("kjhhgv");
+        int opcion = boximg.getSelectedIndex();
+        cuentaImg=0;
+        rutaImg="src/";
+        switch(opcion){
+                case 0:
+                    rutaImg+="ARBOLES_201701015/arbol";
+                    break;
+                case 1:
+                    rutaImg+="SIGUIENTES_201701015/sig";
+                    break;
+                case 2:
+                    rutaImg+="TRANSISIONES_201701015/trans";
+                    break;
+                case 3:
+                    rutaImg+="AFD_201701015/afd";
+                    break;
+            }
+        
+        for (Object instruccion : instrucciones) {
+            if (instruccion.getClass() == Interfaces.expresiones.ExpRegular.class) {
+                Interfaces.expresiones.ExpRegular o = (Interfaces.expresiones.ExpRegular) instruccion;
+               ImageIcon icono = new ImageIcon(rutaImg+o.id+".png");
+               Icon i =  new ImageIcon(icono.getImage().getScaledInstance(lblimage.getWidth(), lblimage.getHeight(), Image.SCALE_DEFAULT));
+               lblimage.setIcon(i);
+                break;
+            }
+
+            cuentaImg++;
+        }
         
     }//GEN-LAST:event_btnGrafActionPerformed
+
+    private void boximgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boximgActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boximgActionPerformed
 
     /**
      * @param args the command line arguments
@@ -330,14 +396,13 @@ public class Ventana extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem IntemAbrir;
+    private javax.swing.JComboBox<String> boximg;
     private javax.swing.JButton btnAnalizar;
     private javax.swing.JButton btnAnt;
     private javax.swing.JButton btnGraf;
     private javax.swing.JButton btnSig;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -346,8 +411,10 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lblimage;
     private javax.swing.JTextArea txtentrada;
     private javax.swing.JTextArea txtsalida;
     // End of variables declaration//GEN-END:variables

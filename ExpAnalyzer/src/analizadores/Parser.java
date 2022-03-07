@@ -159,14 +159,15 @@ public class Parser extends java_cup.runtime.lr_parser {
      public String resultado = "";
         public static LinkedList<Object> instrucciones;
         public static LinkedList<Object> lexemas;
+        public static LinkedList<MErrores> error = new LinkedList<>();
         public void syntax_error(Symbol s)
         {
-            System.err.println("Error en la Linea " + (s.right+1) +" Columna "+(s.left+1)+ ". Identificador "+s.value + " no reconocido. Se ha recuperado del error." );
+           error.add(new MErrores("sintactico","Identificador "+s.value + " no reconocido",s.right,s.left));
         }
 
         public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception
         {
-            System.err.println("Error en la Linea " + (s.right+1)+ " Columna "+(s.left+1)+". Identificador " +s.value + " no reconocido.");
+         error.add(new MErrores("sintactico","Identificador "+s.value + " no reconocido",s.right,s.left));
         }
 
 
