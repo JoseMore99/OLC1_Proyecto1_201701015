@@ -102,6 +102,11 @@ public class Ventana extends javax.swing.JFrame {
         });
 
         btnSig.setText("Siguiente");
+        btnSig.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSigActionPerformed(evt);
+            }
+        });
 
         boximg.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ARBOLES", "SIGUIENTES", "TRANSISIONES", "AFD" }));
         boximg.addActionListener(new java.awt.event.ActionListener() {
@@ -124,24 +129,19 @@ public class Ventana extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane3)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addGap(115, 115, 115)
+                            .addComponent(btnAnalizar)))
+                    .addComponent(jLabel2))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(115, 115, 115)
-                                .addComponent(btnAnalizar)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(lblimage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(45, 45, 45)
+                                .addGap(46, 46, 46)
                                 .addComponent(btnAnt)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnSig))
@@ -150,7 +150,11 @@ public class Ventana extends javax.swing.JFrame {
                                 .addComponent(boximg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                                 .addComponent(btnGraf)))
-                        .addGap(37, 37, 37))))
+                        .addGap(37, 37, 37))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblimage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -165,17 +169,20 @@ public class Ventana extends javax.swing.JFrame {
                     .addComponent(btnGraf))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblimage, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAnalizar)
-                    .addComponent(btnAnt)
-                    .addComponent(btnSig))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAnalizar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblimage, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAnt)
+                            .addComponent(btnSig))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -285,6 +292,27 @@ public class Ventana extends javax.swing.JFrame {
 
     private void btnAntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAntActionPerformed
         // TODO add your handling code here:
+        for (int i = cuentaImg; i > 0; i--) {
+            Object o = instrucciones.get(i);
+            if (o.getClass() == Interfaces.expresiones.ExpRegular.class) {
+                Interfaces.expresiones.ExpRegular e = (Interfaces.expresiones.ExpRegular) o;
+               lblimage.setIcon(new ImageIcon(new ImageIcon(rutaImg+e.id+".png").getImage().getScaledInstance(350, 350, Image.SCALE_DEFAULT)));
+               cuentaImg--; 
+               return;
+            }
+            cuentaImg--;
+        }
+          cuentaImg=0;
+           for (Object instruccion : instrucciones) {
+            if (instruccion.getClass() == Interfaces.expresiones.ExpRegular.class) {
+                Interfaces.expresiones.ExpRegular o = (Interfaces.expresiones.ExpRegular) instruccion;
+               lblimage.setIcon(new ImageIcon(new ImageIcon(rutaImg+o.id+".png").getImage().getScaledInstance(350, 350, Image.SCALE_DEFAULT)));
+               cuentaImg++; 
+               break;
+            }
+
+            cuentaImg++;
+        }
     }//GEN-LAST:event_btnAntActionPerformed
 
     private void IntemAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IntemAbrirActionPerformed
@@ -319,7 +347,6 @@ public class Ventana extends javax.swing.JFrame {
     public String rutaImg;
     private void btnGrafActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrafActionPerformed
         // TODO add your handling code here:
-        System.out.println("kjhhgv");
         int opcion = boximg.getSelectedIndex();
         cuentaImg=0;
         rutaImg="src/";
@@ -331,7 +358,7 @@ public class Ventana extends javax.swing.JFrame {
                     rutaImg+="SIGUIENTES_201701015/sig";
                     break;
                 case 2:
-                    rutaImg+="TRANSISIONES_201701015/trans";
+                    rutaImg+="TRANSICIONES_201701015/trans";
                     break;
                 case 3:
                     rutaImg+="AFD_201701015/afd";
@@ -341,11 +368,9 @@ public class Ventana extends javax.swing.JFrame {
         for (Object instruccion : instrucciones) {
             if (instruccion.getClass() == Interfaces.expresiones.ExpRegular.class) {
                 Interfaces.expresiones.ExpRegular o = (Interfaces.expresiones.ExpRegular) instruccion;
-                Image img = new ImageIcon(getClass().getResource(rutaImg+o.id+".png")).getImage();
-                Image nueva = img.getScaledInstance(200, 200,  java.awt.Image.SCALE_SMOOTH);
-                ImageIcon i = new ImageIcon(nueva); 
-               lblimage.setIcon(i);
-                break;
+               lblimage.setIcon(new ImageIcon(new ImageIcon(rutaImg+o.id+".png").getImage().getScaledInstance(350, 350, Image.SCALE_DEFAULT)));
+               cuentaImg++; 
+               break;
             }
 
             cuentaImg++;
@@ -356,6 +381,31 @@ public class Ventana extends javax.swing.JFrame {
     private void boximgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boximgActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_boximgActionPerformed
+
+    private void btnSigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSigActionPerformed
+        // TODO add your handling code here:
+          for (int i = cuentaImg; i < instrucciones.size(); i++) {
+            Object o = instrucciones.get(i);
+            if (o.getClass() == Interfaces.expresiones.ExpRegular.class) {
+                Interfaces.expresiones.ExpRegular e = (Interfaces.expresiones.ExpRegular) o;
+               lblimage.setIcon(new ImageIcon(new ImageIcon(rutaImg+e.id+".png").getImage().getScaledInstance(350, 350, Image.SCALE_DEFAULT)));
+               cuentaImg++; 
+               return;
+            }
+            cuentaImg++;
+        }
+          cuentaImg=0;
+           for (Object instruccion : instrucciones) {
+            if (instruccion.getClass() == Interfaces.expresiones.ExpRegular.class) {
+                Interfaces.expresiones.ExpRegular o = (Interfaces.expresiones.ExpRegular) instruccion;
+               lblimage.setIcon(new ImageIcon(new ImageIcon(rutaImg+o.id+".png").getImage().getScaledInstance(350, 350, Image.SCALE_DEFAULT)));
+               cuentaImg++; 
+               break;
+            }
+
+            cuentaImg++;
+        }
+    }//GEN-LAST:event_btnSigActionPerformed
 
     /**
      * @param args the command line arguments
