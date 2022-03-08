@@ -28,7 +28,7 @@ simbolo= [\!-\}]
 cadena = [\"][^\"\n]+[\"]
 id   = [a-zA-Z]+([a-zA-Z]|[0-9]|"_")*
 comentario   = "//" [^\r\n]* (\r|\n|\r\n)?
-comentariosmult = [<!][^]*[!>]
+comentariosmult = [<][!][^!>]*[!][>]
 
 %%
 

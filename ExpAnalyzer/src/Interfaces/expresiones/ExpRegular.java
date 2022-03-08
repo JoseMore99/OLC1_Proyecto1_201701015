@@ -88,7 +88,6 @@ public class ExpRegular extends Interfaces.instruccion {
             e.printStackTrace();
         } finally {
            try {
-           // aprovechamos el finally para asegurarnos que se cierra el fichero.
               ficha.close();
            } catch (Exception e2) {
               e2.printStackTrace();
